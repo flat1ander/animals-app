@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Species: <%= animal.species %></h1>
+    <h2>Extinct: <%= animal.extinct %></h2>
+    <h2>Location: <%= animal.location %></h2>
+    <h2>Life Expectancy (years): <%= animal.lifeExpectancy %></h2>
+    <button type="button"><a href="/animals/<%= animal.id %>/edit" style="text-decoration: none; color: black;">Edit Animal</a></button>
+    <button type="button"><a href="/animals" style="text-decoration: none; color: black;">Back</a></button>
+</body>
+</html>
