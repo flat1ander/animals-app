@@ -12,7 +12,7 @@
     <h1>Edit an Animal:</h1>
     <form action="/animals/<%=animal.id%>?_method=PUT" method="POST">
     Species: <input type="text" name="species" value="<%= animal.species %>">
-    Extinct: <input type="checkbox" name="extinct" value="<%= animal.extinct %>">
+    Extinct: <input type="checkbox" name="extinct" id="extinct" value="<%= animal.extinct %>">
     <br>
     Location: <input type="text" name="location" value="<%= animal.location %>">
     Life Expectancy: <input type="text" name="lifeExpectancy" value="<%= animal.lifeExpectancy %>">

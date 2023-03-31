@@ -7,16 +7,16 @@ router.get('/', (req, res) => {
     res.render('index.ejs', {animals});
 })
 
+// New Route
+router.get('/new', (req, res) => {
+    res.render('new.ejs')
+})
+
 // Show Route
 router.get('/:id', (req, res) => {
     const animal = animals[req.params.id];
     animal.id = req.params.id
     res.render('show.ejs', {animal})
-})
-
-// New Route
-router.get('/new', (req, res) => {
-    res.render('new.ejs')
 })
 
 // Post Route
@@ -28,13 +28,17 @@ router.post('/', (req, res) => {
 
 // Edit and Update Routes:
 router.get('/:id/edit', (req, res) => {
-    const animal = animals[req.params.id];
-    res.render('edit.ejs', {animal})
+    const animal = animals[req.params.id]
+    res.render('edit.ejs', { animal })
 })
 
 router.put('/:id', (req, res) => {
-    const animal = animals[req.params.id]
-    animals.splice(animal, 1)
+    if (req.body.extinct === 'on') {
+        req.body.extinct = true
+    } else {
+        req.body.extinct = false
+    }
+    animals[req.params.id] = req.body
     res.redirect('/animals')
 })
 
