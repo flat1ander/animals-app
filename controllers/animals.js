@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const animals = require('../models/animal')
+const starterAnimals = require('../db/animalSeedData.js');
+const Animals = require('../models/animal');
 
 // Index Route
-router.get('/', (req, res) => {
-    res.render('index.ejs', {animals});
-})
+router.get('/', async (req, res) => {
+	const animals = await Animals.find({});
+	res.render('index.ejs', {animals})
+});
 
 // New Route
 router.get('/new', (req, res) => {
@@ -13,42 +15,43 @@ router.get('/new', (req, res) => {
 })
 
 // Show Route
-router.get('/:id', (req, res) => {
-    const animal = animals[req.params.id];
-    animal.id = req.params.id
-    res.render('show.ejs', {animal})
+router.get('/:id', async (req, res) => {
+    const animals = await Animals.findById(req.params.id);
+    res.render('show.ejs', {animals})
 })
 
 // Post Route
-router.post('/', (req, res) => {
-    req.body.extinct = req.body.extinct === 'on' ? true : false
-    animals.unshift(req.body)
+router.post('/', async (req, res) => {
+    req.body.extinct = req.body.extinct === 'on' ? true: false;
+    const animals = await Animals.create(req.body)
     res.redirect('/animals')
 })
 
 // Edit and Update Routes:
-router.get('/:id/edit', (req, res) => {
-    const animal = animals[req.params.id]
-    res.render('edit.ejs', { animal })
+router.get('/:id/edit', async (req, res) => {
+    const animal = await Animals.findById(req.params.id)
+    res.render('edit.ejs', {animal})
 })
 
-router.put('/:id', (req, res) => {
-    if (req.body.extinct === 'on') {
-        req.body.extinct = true
-    } else {
-        req.body.extinct = false
-    }
-    animals[req.params.id] = req.body
+router.put('/:id', async (req, res) => {
+    const id = req.params.id;
+    req.body.extinct = req.body.extinct === 'on' ? true: false;
+    const animals = await Animals.findByIdAndUpdate(id, req.body, {new: true,})
     res.redirect('/animals')
 })
 
 // Delete Route
-router.delete('/:id', (req, res) => {
-    animals.splice(req.params.id, 1)
+router.delete('/:id', async (req, res) => {
+    const animals = await Animals.findByIdAndDelete(req.params.id)
     res.redirect('/animals')
 })
 
-
+// Seed Route
+router.get('/seed', async (req, res) => {
+	await Animals.deleteMany({});
+	await Animals.create(starterAnimals);
+	res.redirect('/animals');
+});
 
 
 

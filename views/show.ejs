@@ -9,11 +9,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Species: <%= animal.species %></h1>
-    <h2>Extinct: <%= animal.extinct %></h2>
-    <h2>Location: <%= animal.location %></h2>
-    <h2>Life Expectancy (years): <%= animal.lifeExpectancy %></h2>
-    <button type="button"><a href="/animals/<%=animal.id%>/edit" style="text-decoration: none; color: black;">Edit Animal</a></button>
+    <h1>Species: <%= animals.species %></h1>
+    <h2>Extinct: <%= animals.extinct %></h2>
+    <h2>Location: <%= animals.location %></h2>
+    <h2>Life Expectancy (years): <%= animals.lifeExpectancy %></h2>
+    <button type="button"><a href="/animals/<%=animals._id%>/edit" style="text-decoration: none; color: black;">Edit Animal</a></button>
     <button type="button"><a href="/animals" style="text-decoration: none; color: black;">Back</a></button>
 </body>
 </html>

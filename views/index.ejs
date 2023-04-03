@@ -15,7 +15,7 @@
     <% for(let i = 0; i < animals.length; i++) { %>
         <table>
             <tr>
-                <td><a href = "/animals/<%= i %>">Species: <%= animals[i].species %></a></td>
+                <td><a href = "/animals/<%=animals._id%>">Species: <%= animals[i].species %></a></td>
                 <td>Extinct: <%= animals[i].extinct %></td>
                 <td>Location: <%= animals[i].location %></td>
                 <td>Life Expectancy: <%= animals[i].lifeExpectancy %></td>

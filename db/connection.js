@@ -1,18 +1,24 @@
-require('dotenv').config()
+// Import mongoose
 const mongoose = require('mongoose')
 
-const connectionString = process.env.DATABASE_URL
+// database configuration 
+const DATABASE_URL = "mongodb+srv://thematthewlane:e0mDIBV2ocJzTWzp@cluster1.smwrnhs.mongodb.net/?retryWrites=true&w=majority"
 
-mongoose.connect(connectionString)
+// mongoose connect to url
+mongoose.connect(DATABASE_URL);
 
-mongoose.connect.on("connected", () => {
+mongoose.connection.on("connected", () => {
     console.log("Mongoose connected to mongo")
 })
 
-mongoose.connect.on("error", (error) => {
+mongoose.connection.on("error", (error) => {
     console.log("mongoDB Connection Error:", error)
 })
 
-mongoose.connect.on("disconnected", () => {
+mongoose.connection.on("disconnected", () => {
     console.log("mongoDB disconnected")
 })
+
+
+// export mongoose 
+module.exports = { mongoose }
