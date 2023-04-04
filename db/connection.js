@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 
 // database configuration 
-const DATABASE_URL = "mongodb+srv://thematthewlane:e0mDIBV2ocJzTWzp@cluster1.smwrnhs.mongodb.net/?retryWrites=true&w=majority"
+const DATABASE_URL = "mongodb+srv://thematthewlane:sKPA3why64vJT9LI@cluster1.smwrnhs.mongodb.net/?retryWrites=true&w=majority"
 
 // mongoose connect to url
 mongoose.connect(DATABASE_URL);
